@@ -1,9 +1,33 @@
 <header class="header">
-  <nav>
-    <ul>
-      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+  <div class="header__logo">
+    <img class="header__logo-image" src="assets/logo.svg" alt="Logo" />
+  </div>
+  <nav class="header__nav">
+    <ul class="header__nav-list">
+      <li class="header__nav-list-item">
+        <a
+          class="header__nav-list-link"
+          routerLink="/home"
+          routerLinkActive="active"
+          >Home</a
+        >
+      </li>
+      <li class="header__nav-list-item">
+        <a
+          class="header__nav-list-link"
+          routerLink="/about"
+          routerLinkActive="active"
+          >About</a
+        >
+      </li>
+      <li class="header__nav-list-item">
+        <a
+          class="header__nav-list-link"
+          routerLink="/contact"
+          routerLinkActive="active"
+          >Contact</a
+        >
+      </li>
     </ul>
   </nav>
 </header>

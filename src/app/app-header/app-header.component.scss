@@ -1,21 +1,29 @@
 .header {
-  background-color: blueviolet;
-  padding: 1rem;
+  background-color: #272726;
+  padding: 0 1rem;
   color: white;
-  border: 1px solid white;
+  border: 1px solid #00c0e2;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
 
-  nav {
+  &__logo {
+    width: 3rem;
+    height: 3rem;
+    img {
+      max-width: 100%;
+      min-height: 100%;
+    }
+  }
+  &__nav {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  ul {
+  &__nav-list {
     list-style: none;
     display: flex;
     align-items: center;
@@ -23,8 +31,22 @@
     gap: 4rem;
   }
 
-  a {
-    // text-decoration: none;
+  &__nav-list-link {
     color: white;
+    transition: 50ms color;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover {
+      color: #00c0e2;
+      color: transparent;
+      background-image: linear-gradient(90deg, #00f0bb, #00c0e2);
+      background-clip: text;
+    }
+    &.active {
+      // color: #00f0bb;
+      color: transparent;
+      background-image: linear-gradient(90deg, #00f0bb, #00c0e2);
+      background-clip: text;
+    }
   }
 }
