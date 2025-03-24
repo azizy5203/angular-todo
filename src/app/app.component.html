@@ -1,14 +1,9 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<app-header />
-
-<main class="main">
-  <router-outlet />
-</main>
+<div class="app-wrapper">
+  <app-header />
+  <main class="app-content">
+    <app-sidebar />
+    <div class="router-wrapper">
+      <router-outlet />
+    </div>
+  </main>
+</div>
