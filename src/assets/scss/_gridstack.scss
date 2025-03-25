@@ -1,0 +1,33 @@
+.grid-stack {
+  border: 1px solid #ccc;
+}
+.grid-stack .grid-stack-item .ui-resizable-handle {
+  position: absolute;
+  z-index: 101;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-color: #007bff;
+  width: 12px;
+  height: 12px;
+}
+
+.grid-stack .grid-stack-item .ui-resizable-se {
+  right: -6px;
+  bottom: -6px;
+}
+.grid-stack .grid-stack-item .ui-resizable-sw {
+  bottom: -6px;
+  left: -6px;
+}
+.grid-stack .grid-stack-item .ui-resizable-ne {
+  top: -6px;
+  right: -6px;
+}
+.grid-stack .grid-stack-item .ui-resizable-nw {
+  top: -6px;
+  left: -6px;
+}
+
+.grid-stack .grid-stack-item .ui-resizable-handle:hover {
+  background-color: #0056b3;
+}

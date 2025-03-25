@@ -1,1 +1,9 @@
-<div style="color: white"></div>
+<div class="home-wrapper">
+  <gridstack class="home-wrapper__gridstack" [options]="gridOptions">
+    @for (n of items; track n.id) {
+      <gridstack-item [options]="n">
+        <p style="padding: 1rem">Item {{ n.id }}</p>
+      </gridstack-item>
+    }
+  </gridstack>
+</div>
