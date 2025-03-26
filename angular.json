@@ -64,7 +64,8 @@
               "buildTarget": "todo-app:build:production"
             },
             "development": {
-              "buildTarget": "todo-app:build:development"
+              "buildTarget": "todo-app:build:development",
+              "port": 8080
             }
           },
           "defaultConfiguration": "development"

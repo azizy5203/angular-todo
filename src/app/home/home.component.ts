@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { GridStackOptions, GridStackWidget } from 'gridstack';
 import { GridstackComponent, GridstackItemComponent } from 'gridstack/dist/angular';
+import { FileUploaderFieldComponent } from "../../components/forms/file-uploader-field/file-uploader-field.component";
 
 @Component({
   selector: 'home',
   imports: [GridstackComponent,
-    GridstackItemComponent],
+    GridstackItemComponent, FileUploaderFieldComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
