@@ -1,4 +1,5 @@
 {
-  "plugins": ["prettier-plugin-css-order"],
-  "cssDeclarationSorter": "concentric-css"
+  "plugins": ["prettier-plugin-css-order", "prettier-plugin-tailwindcss"],
+  "cssDeclarationSorter": "smacss",
+  "tailwindConfig": "./tailwind.config.js"
 }

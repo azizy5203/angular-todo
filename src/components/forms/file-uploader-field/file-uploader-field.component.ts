@@ -1,68 +1,106 @@
-import { Component,Input,OnDestroy,OnInit } from '@angular/core';
-
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 @Component({
   selector: 'file-uploader-field',
-  imports: [],
+  standalone: true,
   templateUrl: './file-uploader-field.component.html',
   styleUrl: './file-uploader-field.component.scss',
 })
-export class FileUploaderFieldComponent implements OnInit, OnDestroy { 
+export class FileUploaderFieldComponent implements OnInit, OnDestroy {
   files: File[] = [];
   dropZoneActive: boolean = false;
-  @Input() maxSize: number = 10;
+  errors: string[] = [];
+
+  @Input() maxSize: number = 10; // Max file size in MB
   @Input() multiple: boolean = true;
+  @Input() maxFiles: number = 5; // Maximum number of files allowed
   @Input() allowedFileTypes: string[] = [
-    ".xlxs",
-    ".docx",
+    ".xlsx",
     ".pdf",
     ".ppt",
     ".pptx",
     ".doc",
     ".xls",
-    ".xlsx",
     ".mpp",
     ".jpg",
     ".png"
   ];
+
   ngOnInit(): void {
-    window.addEventListener('dragover', (event: DragEvent)=>event.preventDefault(), false);
-    window.addEventListener('drop', (event: DragEvent)=>event.preventDefault(), false);
+    window.addEventListener('dragover', (event: DragEvent) => event.preventDefault(), false);
+    window.addEventListener('drop', (event: DragEvent) => event.preventDefault(), false);
   }
 
   ngOnDestroy() {
-    window.removeEventListener('dragover', (event: DragEvent)=>event.preventDefault(), false);
-    window.removeEventListener('drop', (event: DragEvent)=>event.preventDefault(), false);
+    window.removeEventListener('dragover', (event: DragEvent) => event.preventDefault(), false);
+    window.removeEventListener('drop', (event: DragEvent) => event.preventDefault(), false);
   }
 
-
-  onFileChange(event: Event,fileInput: HTMLInputElement) {
+  onFileChange(event: Event, fileInput: HTMLInputElement) {
+    this.errors = []; // Reset errors
     const target = event.target as HTMLInputElement;
-    this.handleFilesAdded(Array.from(target.files || []));
-    fileInput.value = '';
-    console.log(this.files)
+    this.validateAndAddFiles(Array.from(target.files || []));
+    fileInput.value = ''; // Clear the input
   }
 
-  onDrop(event: DragEvent,fileInput: HTMLInputElement) {
+  onDrop(event: DragEvent, fileInput: HTMLInputElement) {
     event.preventDefault();
     this.dropZoneActive = false;
+    this.errors = []; // Reset errors
     const files = event.dataTransfer?.files;
     if (files) {
-      this.handleFilesAdded(Array.from(files));
-    fileInput.value = '';
-
+      this.validateAndAddFiles(Array.from(files));
+      fileInput.value = ''; // Clear the input
     }
   }
 
-  handleFilesAdded(files: File[]){
-    this.files = [...this.files, ...[...files]];
+  validateAndAddFiles(newFiles: File[]) {
+    // Validate total number of files
+    if (!this.multiple && newFiles.length > 1) {
+      this.errors.push('Multiple file upload is not allowed.');
+      return;
+    }
+
+    if (this.files.length + newFiles.length > this.maxFiles) {
+      this.errors.push(`Maximum ${this.maxFiles} files are allowed.`);
+      return;
+    }
+
+    // Filter and validate each file
+    const validFiles: File[] = newFiles.filter(file => {
+      // Validate file type
+      const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase();
+      const isValidType = this.allowedFileTypes.includes(fileExtension);
+      if (!isValidType) {
+        this.errors.push(`Invalid file type: ${file.name}. Allowed types are ${this.allowedFileTypes.join(', ')}.`);
+      }
+
+      // Validate file size (convert MB to bytes)
+      const maxSizeBytes = this.maxSize * 1024 * 1024;
+      const isValidSize = file.size <= maxSizeBytes;
+      if (!isValidSize) {
+        this.errors.push(`File ${file.name} exceeds maximum size of ${this.maxSize}MB.`);
+      }
+
+      return isValidType && isValidSize;
+    });
+
+    // Add valid files
+    if (validFiles.length > 0) {
+      this.files = [...this.files, ...validFiles];
+    }
   }
 
-  onDragEnter(event: DragEvent){
+  onDragEnter(event: DragEvent) {
     event.preventDefault();
-    this.dropZoneActive = true
+    this.dropZoneActive = true;
   }
-  onDragLeave(event: DragEvent){
+
+  onDragLeave(event: DragEvent) {
     event.preventDefault();
-    this.dropZoneActive = false
+    this.dropZoneActive = false;
+  }
+
+  removeFile(fileToRemove: File) {
+    this.files = this.files.filter(file => file !== fileToRemove);
   }
 }

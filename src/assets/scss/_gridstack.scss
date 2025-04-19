@@ -3,8 +3,9 @@
 .grid-stack {
   border: 1px solid #ccc;
 
-  .grid-stack-item-content{
+  .grid-stack-item-content {
     background-color: #18bc9c;
+    padding: 1rem;
   }
 
   .grid-stack-item {
@@ -14,30 +15,29 @@
       border: 2px solid #fff;
       border-radius: 50%;
       background-color: #007bff;
-    width: 12px;
-    height: 12px;
-  }
+      width: 12px;
+      height: 12px;
+    }
 
-  &-resizable-se {
-    right: -6px;
-    bottom: -6px;
-  }
-  &-resizable-sw {
-    bottom: -6px;
-    left: -6px;
-  }
-  &-resizable-ne {
-    top: -6px;
-    right: -6px;
-  }
-  &-resizable-nw {
-    top: -6px;
-    left: -6px;
-  }
+    &-resizable-se {
+      right: -6px;
+      bottom: -6px;
+    }
+    &-resizable-sw {
+      bottom: -6px;
+      left: -6px;
+    }
+    &-resizable-ne {
+      top: -6px;
+      right: -6px;
+    }
+    &-resizable-nw {
+      top: -6px;
+      left: -6px;
+    }
 
-  &-resizable-handle:hover {
-    background-color: #0056b3;
-  }
-
+    &-resizable-handle:hover {
+      background-color: #0056b3;
+    }
   }
 }

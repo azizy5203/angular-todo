@@ -1,28 +1,71 @@
-<div class="file-uploader" >
-    <label class="file-uploader__label" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event,fileInput)" [attr.data-drop-active]="dropZoneActive" for="file-uploader" >
-      <input type="file" #fileInput [multiple]="multiple" [accept]="allowedFileTypes.join(',')" (change)="onFileChange($event,fileInput)" id="file-uploader" class="file-uploader__input" placeholder="Upload files" />
-      <svg class="file-uploader__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg>
+<div class="file-uploader">
+    <!-- Validation Errors -->
+    @if (errors.length > 0) {
+        <div class="file-uploader__errors-wrapper">
+            <div class="file-uploader__errors-header">
+                <span>Invalid Files</span>
+                <button class="file-uploader__close-button" (click)="errors = []">X</button>
+            </div>
+            <ul class="file-uploader__errors">
+              @for (error of errors; track error) {
+                <li class="file-uploader__error">{{ error }}</li>
+              }
+            </ul>
+        </div>
+    }
+  
+    <label 
+      class="file-uploader__label" 
+      (dragenter)="onDragEnter($event)" 
+      (dragleave)="onDragLeave($event)" 
+      (drop)="onDrop($event,fileInput)" 
+      [attr.data-drop-active]="dropZoneActive" 
+      [attr.data-has-errors]="errors.length > 0" 
+      for="file-uploader"
+    >
+      <input 
+        type="file" 
+        #fileInput 
+        [multiple]="multiple" 
+        [accept]="allowedFileTypes.join(',')" 
+        (change)="onFileChange($event,fileInput)" 
+        id="file-uploader" 
+        class="file-uploader__input" 
+        placeholder="Upload files" 
+      />
+      <svg class="file-uploader__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+        <path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
+      </svg>
       <div class="file-uploader__text-wrapper">
-          <div class="file-uploader__cta">
-              <span>Click to upload</span>
-              <span>or drop files here</span>
-          </div>
-          <div class="file-uploader__allowed-types">
-            <span>Allowed types: {{allowedFileTypes.join(', ')}}</span>
-          </div>
+        <div class="file-uploader__cta">
+          <span>Click to upload</span>
+          <span>or drop files here</span>
+        </div>
+        <div class="file-uploader__allowed-types">
+          <span>Allowed types: {{allowedFileTypes.join(', ')}}</span>
+          <span>Max file size: {{maxSize}}MB</span>
+          <span>Max files: {{maxFiles}}</span>
+        </div>
       </div>
     </label>
   
-    @if (files.length>0) {
-  
-        <ul class="file-uploader__files">
-          @for (file of files; track file.name) {
-            <li class="file-uploader__file-item">
-                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e3e3e3"><path d="M360-440h400L622-620l-92 120-62-80-108 140ZM120-120q-33 0-56.5-23.5T40-200v-520h80v520h680v80H120Zm160-160q-33 0-56.5-23.5T200-360v-440q0-33 23.5-56.5T280-880h200l80 80h280q33 0 56.5 23.5T920-720v360q0 33-23.5 56.5T840-280H280Zm0-80h560v-360H527l-80-80H280v440Zm0 0v-440 440Z"/></svg>
-                <span>{{ file.name }}</span>
-              </li>
-          }
-        </ul>
+    @if (files.length > 0) {
+      <ul class="file-uploader__files">
+        @for (file of files; track file.name) {
+          <li class="file-uploader__file-item">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e3e3e3">
+              <path d="M360-440h400L622-620l-92 120-62-80-108 140ZM120-120q-33 0-56.5-23.5T40-200v-520h80v520h680v80H120Zm160-160q-33 0-56.5-23.5T200-360v-440q0-33 23.5-56.5T280-880h200l80 80h280q33 0 56.5 23.5T920-720v360q0 33-23.5 56.5T840-280H280Zm0-80h560v-360H527l-80-80H280v440Zm0 0v-440 440Z"/>
+            </svg>
+            <span>{{ file.name }}</span>
+            <button 
+              type="button" 
+              (click)="removeFile(file)" 
+              class="file-uploader__remove-file"
+            >
+              ✕
+            </button>
+          </li>
+        }
+      </ul>
     }
   </div>
-  
