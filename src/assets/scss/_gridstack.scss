@@ -1,18 +1,14 @@
 @import "gridstack/dist/gridstack.min.css";
 @import "gridstack/dist/gridstack-extra.min.css";
 .grid-stack {
-  border: 1px solid #ccc;
-
   .grid-stack-item-content {
     background-color: #18bc9c;
-    padding: 1rem;
   }
 
   .grid-stack-item {
     &-resizable-handle {
       position: absolute;
       z-index: 101;
-      border: 2px solid #fff;
       border-radius: 50%;
       background-color: #007bff;
       width: 12px;
