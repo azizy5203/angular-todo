@@ -1,0 +1,13 @@
+<span (click)="updateCount(count() + 1)" class="cursor-pointer">{{
+  count()
+}}</span>
+<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+  @for (task of tasksList; track task.id) {
+    <task-card
+      [task]="task"
+      [count]="count"
+      theme="dark"
+      (load)="logData($event)"
+    />
+  }
+</div>

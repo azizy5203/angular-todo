@@ -1,0 +1,20 @@
+<div
+  (click)="incrementCount()"
+  class="flex cursor-pointer flex-col items-start gap-2 rounded-md p-4 shadow-md shadow-black transition-all hover:shadow-sky-800"
+>
+  <span class="rounded-full bg-blue-400 px-2 py-1 text-white">{{
+    task.status
+  }}</span>
+  <h4 class="text-xl font-semibold text-white">{{ task.title }}</h4>
+  <p class="text-sky-500">{{ task.description }}</p>
+
+  <div class="mt-auto flex items-center gap-2">
+    <span
+      *ngFor="let tag of task.tags"
+      class="rounded-md bg-slate-500 p-2 text-white"
+      >{{ tag }}</span
+    >
+  </div>
+  <span *ngIf="theme() == 'dark'">dark Theme</span>
+  <span *ngIf="theme() == 'light'">light Theme</span>
+</div>

@@ -1,0 +1,39 @@
+<div class="p-4 text-white">
+  <div class="flex items-center">
+    <button
+      (click)="selectTab('tab1')"
+      class="rounded-tl bg-amber-400 px-2 py-1 text-white rtl:rounded-tr"
+    >
+      tab 1
+    </button>
+    <button
+      (click)="selectTab('tab2')"
+      class="bg-amber-400 px-2 py-1 text-white"
+    >
+      tab 2
+    </button>
+    <button
+      (click)="selectTab('tab3')"
+      class="bg-amber-400 px-2 py-1 text-white"
+    >
+      tab 3
+    </button>
+  </div>
+
+  <div [hidden]="selectedTab != 'tab1'" class="tab border border-amber-500 p-4">
+    tab1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+    doloribus officiis illum voluptates facilis reiciendis amet, aliquam
+    laboriosam mollitia illo consectetur ducimus dignissimos, quos harum quia
+    recusandae debitis a quaerat!
+  </div>
+  <div [hidden]="selectedTab != 'tab2'" class="tab border border-amber-500 p-4">
+    tab2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+    doloribus officiis illum voluptates facilis reiciendis amet, aliquam
+    laboriosam mollitia illo consectetur ducimus dignissimos, quos harum quia
+    recusandae debitis a quaerat!
+  </div>
+  <div [hidden]="selectedTab != 'tab3'" class="tab border border-amber-500 p-4">
+    <tab-item />
+  </div>
+</div>
+<button (click)="increaseCount()">plus</button>
