@@ -1,3 +1,29 @@
 <div class="home-wrapper">
-  <!-- <file-uploader-field/> -->
+  <div
+    class="gap-4 rounded-xl bg-slate-800 h-48 p-6 shadow-md"
+  >
+  <span class="text-white border-e-red-300 p-4">{{ userDate | date:"dd-MM-YYYY 'at' hh:mm a"  }}</span>
+    <dialog class="rounded-xl bg-slate-800 p-6 text-[#e8e8e8] shadow-md w-48 h-48" [open]="dialogOpen">
+      <div>
+        <h1>Hello</h1>
+      </div>
+      <button (click)="closeDialog()" class="rounded-xl bg-zinc-800 p-2 text-[#e8e8e8] shadow-md">
+        Close
+      </button>
+    </dialog>
+
+    <button (click)="openDialog()" class="rounded-xl bg-zinc-800 p-2 text-[#e8e8e8] shadow-md">
+      Open
+    </button>
+
+    <form action="">
+      <input type="text" name="name" id="name" placeholder="Name" [(ngModel)]="formValues.name">
+      <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="formValues.email">
+      <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="formValues.password">
+      <button type="submit">Submit</button>
+    </form>
+
+
+    <pre class="text-white">{{ formValues | json }}</pre>
+  </div>
 </div>

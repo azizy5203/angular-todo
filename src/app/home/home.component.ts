@@ -1,13 +1,31 @@
 import { Component } from '@angular/core';
-
-import { FileUploaderFieldComponent } from '../../components/forms/file-uploader-field/file-uploader-field.component';
-
+import { CommonModule ,DatePipe} from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'home',
   imports: [
-    // FileUploaderFieldComponent,
+    CommonModule,
+    FormsModule,
+    DatePipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+  dialogOpen = false;
+  formValues={
+    name: '',
+    email: '',
+    password: '',
+  }
+  userDate = new Date();
+
+  openDialog() {
+    this.dialogOpen = true;
+  }
+
+  closeDialog() {
+    this.dialogOpen = false;
+  }
+}
