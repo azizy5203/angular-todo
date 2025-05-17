@@ -2,8 +2,15 @@
   <div
     class="gap-4 rounded-xl bg-slate-800 h-48 p-6 shadow-md"
   >
+  <button appButton>
+    <span ngProjectAs="texter">clicker</span>
+    <!-- <span class="icon">👆</span> -->
+  </button>
+  <h1 class="text-white border border-red-700 p-4">hello {{ results() }}</h1>
+  <button class="text-white border border-red-700 p-4" (click)="addData()">add</button>
+  <br>
   <span class="text-white border-e-red-300 p-4">{{ userDate | date:"dd-MM-YYYY 'at' hh:mm a"  }}</span>
-    <dialog class="rounded-xl bg-slate-800 p-6 text-[#e8e8e8] shadow-md w-48 h-48" [open]="dialogOpen">
+  <dialog class="rounded-xl bg-slate-800 p-6 text-[#e8e8e8] shadow-md w-48 h-48" [open]="dialogOpen">
       <div>
         <h1>Hello</h1>
       </div>
