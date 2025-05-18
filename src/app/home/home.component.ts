@@ -3,14 +3,16 @@ import { CommonModule ,DatePipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { AppButtonComponent } from '../components/app-button/app-button.component';
+import { AppInputComponent } from "../components/app-input/app-input.component";
 @Component({
   selector: 'home',
   imports: [
     CommonModule,
     FormsModule,
     DatePipe,
-    AppButtonComponent
-  ],
+    AppButtonComponent,
+    AppInputComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
