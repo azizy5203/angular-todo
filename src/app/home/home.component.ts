@@ -21,7 +21,7 @@ export class HomeComponent {
 
   private dataService = inject(DataService);
 
-
+  datad = 'data';
   results = computed(()=> this.dataService.data() * 2)
 
   addData() {
@@ -38,6 +38,7 @@ export class HomeComponent {
 
   openDialog() {
     this.dialogOpen = true;
+    this.datad = 'datadsdsd';
   }
 
   closeDialog() {

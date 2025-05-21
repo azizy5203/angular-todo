@@ -3,8 +3,8 @@
     class="gap-4 rounded-xl bg-slate-800 p-6 shadow-md border-4 border-emerald-600"
   >
 
-  <app-input label="Namer" id="named">
-    <input type="text"  placeholder="Name" [(ngModel)]="formValues.name">
+  <app-input [label]="datad" id="named">
+    <input type="text"  placeholder="Name" [(ngModel)]="datad">
   </app-input>
   <app-input label="Namer" id="named">
     <textarea type="text" placeholder="Name" [(ngModel)]="formValues.name"></textarea>
